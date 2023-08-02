@@ -1,0 +1,70 @@
+<!--Develop HTML form and add validation support-->
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--xmlns... => thymeleaf name-->
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+        .error {color:red}
+    </style>
+</head>
+<body>
+<i>Fill out the form.Asterisk (*) means required</i>
+<br><br>
+<form th:action="@{/processForm}" th:object="${customer}" method="POST">
+    First name: <input type="text" th:field="*{firstName}"/>
+    <br><br>
+    Last name (*): <input type="text" th:field="*{lastName}"/>
+    <span th:if="${#fields.hasErrors('lastName')}"
+    th:errors="*{lastName}"
+          class="error"
+    ></span>
+    <br><br>
+    Free passes: <input type="text" th:field="*{freePasses}"/>
+    <span th:if="${#fields.hasErrors('freePasses')}"
+    th:errors="*{freePasses}"
+          class="error"
+    ></span>
+    <br><br>
+    Postal Code: <input type="text" th:field="*{postalCode}"/>
+    <span th:if="${#fields.hasErrors('postalCode')}"
+          th:errors="*{postalCode}"
+          class="error"
+    ></span>
+<!--    update confirmation page-->
+    <br><br>
+    Course Code: <input type="text" th:field="*{courseCode}"/>
+    <span th:if="${#fields.hasErrors('courseCode')}"
+          th:errors="*{courseCode}"
+          class="error"
+    ></span>
+    <br><br>
+
+
+
+
+    <input type="submit" value="Submit"/>
+
+
+
+
+
+</form>
+
+</body>
+</html>
+
+
+
+<!--    customer => Model attribute name-->
+<!--    post => sending using HTTP post-->
+<!--    processForm => where to submit form data-->
+<!--    check if error message for lastname-->
+<!--    display error message for lastName-->
+<!--    add error message (if present)-->
+
+
